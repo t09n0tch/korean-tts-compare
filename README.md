@@ -12,6 +12,40 @@
 
 설치 스크립트는 각 모델의 짧은 한국어 합성을 확인합니다. 기본 8문장의 전체 비교 음성은 화면에서 **비교 음성 만들기**를 눌러 생성합니다.
 
+## 상담 대사 음성 예시
+
+제공받은 상담 대사 5개를 각 모델의 기본 음성으로 합성했습니다. **Supertonic 3은 F1, MeloTTS는 KR, Piper는 KSS**를 사용했습니다. MP3 링크를 누르면 브라우저에서 듣거나 파일로 저장할 수 있습니다. 모델마다 화자와 음량이 다르므로 발음과 문장 흐름을 중심으로 비교하세요. 대사 원문은 [data/counseling-samples.json](data/counseling-samples.json)에 있습니다. 저장소의 MIT 라이선스는 이 프로젝트의 코드에 적용됩니다. 음성 예시를 다른 용도로 사용할 때에는 모델별 사용 조건도 확인하세요.
+
+### 1. 공감과 수용
+
+> 그동안 혼자서 많은 걸 감당해 오셨던 것 같아요. 어떤 순간이 가장 힘들게 느껴지셨나요?
+
+[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s01.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s01.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s01.mp3)
+
+### 2. 감정 탐색
+
+> 그 상황에서 화가 나셨다고 말씀하셨는데, 혹시 그 감정 안에 서운함이나 두려움도 있었을까요?
+
+[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s02.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s02.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s02.mp3)
+
+### 3. 자기이해 유도
+
+> 스스로에게 굉장히 높은 기준을 적용하고 계신 것 같아요. 그 기준에 미치지 못했을 때 자신을 어떻게 바라보시나요?
+
+[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s03.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s03.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s03.mp3)
+
+### 4. 관점 전환
+
+> 친한 친구가 똑같은 상황을 겪고 있다면 어떤 말을 해주실 것 같으세요? 그 말을 자신에게도 해줄 수 있을까요?
+
+[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s04.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s04.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s04.mp3)
+
+### 5. 변화와 회복
+
+> 지금 당장 모든 문제를 해결할 필요는 없어요. 오늘 이야기한 것 중에서 가장 먼저 바꿔보고 싶은 부분은 무엇인가요?
+
+[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s05.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s05.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s05.mp3)
+
 ## Windows 10/11: WSL2 Ubuntu
 
 세 모델을 함께 쓰는 Windows 경로는 **WSL2 Ubuntu**입니다. PowerShell을 관리자 권한으로 열고 다음을 실행합니다. Windows가 재시작을 요청하면 재시작한 뒤 Ubuntu를 엽니다. 이미 WSL2 Ubuntu가 있다면 건너뜁니다.

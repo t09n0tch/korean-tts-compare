@@ -12,3 +12,4 @@ __pycache__/
 .DS_Store
 data/*
 !data/samples.json
+!data/counseling-samples.json
