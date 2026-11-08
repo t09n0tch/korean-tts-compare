@@ -30,12 +30,15 @@ class Handler(BaseHTTPRequestHandler):
             return self.json_response({'app_id': 'korean-tts-compare', 'models': [{'id': m, **info, 'available': available(m)} for m, info in MODELS.items()],
                                        'samples': read_json(ROOT / 'data/samples.json'), 'machine': machine_info(),
                                        'latest': read_json(latest_file)['id'] if latest_file.exists() else None})
+        if path == '/api/counseling-samples':
+            return self.json_response(read_json(ROOT / 'data/counseling-samples.json'))
         if re.fullmatch(r'/api/jobs/[0-9]{8}-[0-9]{6}-[a-f0-9]{6}', path):
             file = ROOT / 'outputs' / path.rsplit('/', 1)[-1] / 'job.json'
             return self.json_response(read_json(file)) if file.exists() else self.json_response({'error': '결과가 없습니다.'}, 404)
         if path in ['/', '/index.html']:
             return self.send_file(ROOT / 'web/index.html')
-        if re.fullmatch(r'/outputs/[0-9]{8}-[0-9]{6}-[a-f0-9]{6}/(supertonic|melo|piper)/s[0-9]{2}\.wav', path):
+        model_names = '|'.join(re.escape(name) for name in MODELS)
+        if re.fullmatch(r'/outputs/[0-9]{8}-[0-9]{6}-[a-f0-9]{6}/(' + model_names + r')/s[0-9]{2}\.wav', path):
             return self.send_file(ROOT / path.lstrip('/'))
         return self.json_response({'error': '찾을 수 없습니다.'}, 404)
 

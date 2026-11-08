@@ -17,6 +17,11 @@ MODELS = {
     'supertonic': {'name': 'Supertonic 3', 'note': '공식 지원 종료 · 아카이브 모델 · 기본 F1 음성'},
     'melo': {'name': 'MeloTTS Korean', 'note': '한국어 KR 음성 · PyTorch CPU'},
     'piper': {'name': 'Piper KSS', 'note': '한국어 단일 화자 · ONNX CPU · 데이터셋 비상업 라이선스 표기'},
+    'pocket100': {'name': 'Pocket-TTS Korean 100M', 'note': '한국어 커뮤니티 모델 · 공통 합성 참조 음성 · PyTorch CPU',
+                  'env': 'pocket', 'worker': 'pocket'},
+    'pocket300': {'name': 'Pocket-TTS Korean 300M', 'note': '한국어 커뮤니티 모델 · 100M과 같은 참조 음성 · PyTorch CPU',
+                  'env': 'pocket', 'worker': 'pocket'},
+    'ppaso': {'name': 'Ppaso-TTS', 'note': '한국어 여성 단일 화자 · 경량 ONNX CPU · 기계적인 음색 가능'},
 }
 
 
@@ -33,7 +38,7 @@ def write_json(path, value):
 
 
 def python_for(model):
-    return ROOT / '.venvs' / model / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
+    return ROOT / '.venvs' / MODELS[model].get('env', model) / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
 
 
 def available(model):
@@ -107,18 +112,19 @@ def run_job(job):
         print(job['progress'], flush=True)
         model_dir = job_dir / model
         model_dir.mkdir(parents=True, exist_ok=True)
-        request = {'texts': job['texts'], 'threads': job['threads'],
+        request = {'model': model, 'texts': job['texts'], 'threads': job['threads'],
                    'voice': job['supertonic_voice'] if model == 'supertonic' else 'KR'}
         write_json(model_dir / 'request.json', request)
         started = time.perf_counter()
         try:
             with (model_dir / 'run.log').open('w', encoding='utf-8') as log:
-                subprocess.run([str(python_for(model)), str(ROOT / 'workers' / f'{model}.py'),
+                worker = MODELS[model].get('worker', model)
+                subprocess.run([str(python_for(model)), str(ROOT / 'workers' / f'{worker}.py'),
                                 '--request', str(model_dir / 'request.json'), '--output-dir', str(model_dir)],
                                cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT,
                                check=True, timeout=1800)
             result = read_json(model_dir / 'result.json')
-            if result.get('device') != 'cpu' or len(result.get('items', [])) != len(job['texts']):
+            if result.get('model') != model or result.get('device') != 'cpu' or len(result.get('items', [])) != len(job['texts']):
                 raise RuntimeError('CPU 합성 결과 개수가 요청과 일치하지 않습니다.')
             for item in result['items']:
                 path = Path(item['path'])

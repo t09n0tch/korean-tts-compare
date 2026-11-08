@@ -11,6 +11,8 @@
     @media(max-width:1000px){.workspace{grid-template-columns:minmax(0,1fr) 285px}.shell{padding:0 24px 40px}.audio-card{padding:16px 13px}.metrics{gap:7px}}
     @media(max-width:760px){.shell{padding:0 16px 30px}.topbar{padding:18px 0;align-items:start}.brand{font-size:11px}.machine{max-width:48%;font-size:10px}.hero{padding:27px 0 22px}.hero h1{font-size:28px}.hero p{font-size:13px}.workspace{grid-template-columns:1fr;gap:15px}.panel-content{padding:18px}.model-list{grid-template-columns:1fr}.settings-row{margin-top:13px}.config-footer{padding:15px 18px}.audio-grid{grid-template-columns:1fr}.audio-card{border-right:0;border-bottom:1px solid var(--line);padding:18px}.audio-card:last-child{border-bottom:0}.results-heading{align-items:start;flex-direction:column}.sentence-header{padding:16px}.results-heading h2{font-size:20px}.metrics{justify-content:start;gap:30px}.ratings{grid-template-columns:1fr 1fr}.status-time{display:none}.editor-footer{align-items:start}.sample-tags{margin-top:12px}}
     .editor-actions{display:flex;gap:13px;flex-wrap:wrap;justify-content:flex-end}.editor-actions button{font-size:12px}.sentence-text{flex:1;min-width:0;overflow-wrap:anywhere}.sequence-button{flex:none;font-size:11px;white-space:nowrap;padding:7px 10px}.sequence-button[aria-pressed="true"]{background:var(--accent);color:white;border-color:var(--accent)}
+    .audio-grid{gap:1px;background:var(--line)}.audio-card,.audio-card:last-child{border:0;background:#fff}.audio-heading{align-items:flex-start;flex-wrap:wrap}.voice{max-width:100%;overflow:hidden;text-overflow:ellipsis}.model-main{align-items:flex-start}.model-main input{flex:none;margin-top:3px}.model-name{min-width:0;overflow-wrap:anywhere}.model-status{flex:none}.result-filter-note{font-size:12px;color:var(--muted);margin:0 0 10px}.load-summary{overflow-wrap:anywhere}
+    @media(max-width:1000px) and (min-width:761px){.audio-grid{grid-template-columns:repeat(var(--medium-columns,2),minmax(0,1fr))}}
     @media(max-width:760px){.panel-title{flex-wrap:wrap;gap:8px}.sentence-header{flex-wrap:wrap}.sequence-button{margin-left:26px}.sentence-text{flex-basis:calc(100% - 40px)}.result-actions{width:100%}.result-actions .small{flex-basis:100%}}
     @media(prefers-reduced-motion:reduce){.banner.running .status-dot{animation:none}}
   </style>
@@ -31,11 +33,11 @@
       <div class="workspace">
         <section class="panel">
           <div class="panel-content">
-            <div class="panel-title"><h2><span class="section-index">01</span>비교할 문장</h2><div class="editor-actions"><button type="button" class="text-button" id="clear-input">입력 비우기</button><button type="button" class="text-button" id="load-presets">기본 문장 불러오기</button></div></div>
+            <div class="panel-title"><h2><span class="section-index">01</span>비교할 문장</h2><div class="editor-actions"><button type="button" class="text-button" id="clear-input">입력 비우기</button><button type="button" class="text-button" id="load-presets">발음 비교 문장</button><button type="button" class="text-button" id="load-counseling">상담 대사 불러오기</button></div></div>
             <label class="textarea-label" for="texts">한 줄에 한 문장씩 입력하세요. 최대 20문장, 문장당 500자까지 같은 원문을 전달합니다.</label>
             <textarea id="texts" spellcheck="false" placeholder="안녕하세요. 오늘은 한국어 음성 합성을 비교해 보겠습니다." required></textarea>
             <div class="editor-footer"><span class="small" id="sentence-count">0개 문장</span><span class="small">숫자와 영문을 그대로 넣어 읽기 방식도 비교해 보세요.</span></div>
-            <div class="sample-tags" id="sample-tags" aria-label="기본 문장 유형"></div>
+            <div class="sample-tags" id="sample-tags" aria-label="선택한 문장 유형"></div>
           </div>
           <div class="config-footer"><p>모델별로 순서대로 합성합니다.<br>처음 실행할 때는 모델 로딩이 더 걸릴 수 있어요.</p><button class="primary" type="submit" id="run-button" disabled>비교 음성 만들기 <span aria-hidden="true">↗</span></button></div>
         </section>
@@ -57,9 +59,10 @@
   <section class="banner" id="status-banner" aria-live="polite" aria-atomic="true">
     <span class="status-dot" aria-hidden="true"></span><div class="status-copy"><strong id="status-title"></strong><p id="status-message"></p></div><span class="status-time" id="status-time"></span>
   </section>
-  <section class="empty" id="empty-state"><div class="empty-icon" aria-hidden="true">ııIıı</div><h2>비교할 준비가 되었습니다</h2><p>문장과 모델을 고른 뒤 음성을 생성하면, 여기서 바로 들어볼 수 있어요.</p></section>
+  <section class="empty" id="empty-state"><div class="empty-icon" aria-hidden="true">ııIıı</div><h2 id="empty-title">비교할 준비가 되었습니다</h2><p id="empty-message">문장과 모델을 고른 뒤 음성을 생성하면, 여기서 바로 들어볼 수 있어요.</p></section>
   <section class="results hidden" id="results">
-    <div class="results-heading"><div><h2>문장별 듣기 비교</h2><p class="results-subtitle">각 음성을 따로 재생하거나, 한 문장을 모델 순서대로 이어서 들어보세요.</p></div><div class="result-actions"><span class="small">평가는 이 브라우저에 자동 저장</span><button type="button" id="stop-playback" disabled>재생 멈추기 ■</button><button type="button" id="export-csv">평가 CSV 저장 ↓</button></div></div>
+    <div class="results-heading"><div><h2>문장별 듣기 비교</h2><p class="results-subtitle">각 음성을 따로 재생하거나, 한 문장을 모델 순서대로 이어서 들어보세요.</p></div><div class="result-actions"><span class="small">평가는 이 브라우저에 자동 저장</span><button type="button" id="stop-playback" disabled>재생 멈추기 ■</button><button type="button" id="export-csv" title="현재 결과에 포함된 모든 모델의 평가를 저장합니다">전체 평가 CSV ↓</button></div></div>
+    <p class="result-filter-note" id="result-filter-note"></p>
     <p class="load-summary" id="load-summary"></p>
     <div id="sentence-results"></div>
     <p class="footnote">합성 시간은 모델 로딩을 제외한 경과 시간입니다. RTF = 합성 시간 ÷ 음성 길이이며, 1보다 작으면 재생 시간보다 빠르게 생성한 것입니다. 이 컴퓨터에서의 결과이므로 다른 CPU의 성능과 직접 비교하지 마세요. 평가는 자동 채점이 아닌 직접 들은 기록입니다.</p>
@@ -70,7 +73,7 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const state = {config:null, job:null, poll:null, rendering:'', startTime:0, busy:false};
-  const names = {supertonic:'Supertonic 3',melo:'MeloTTS Korean',piper:'Piper KSS'};
+  const names = Object.create(null);
   const storageKey = 'korean-voice-lab-ratings-v1';
   const activeJobKey = 'korean-voice-lab-active-job-v1';
   let ratings = {};
@@ -122,6 +125,9 @@
   function el(tag, cls, text) { const e=document.createElement(tag); if(cls)e.className=cls; if(text!==undefined)e.textContent=text; return e; }
   function texts() { return $('texts').value.split(/\r?\n/).map(t=>t.trim()).filter(Boolean); }
   function selectedModels() { return [...document.querySelectorAll('input[name="model"]:checked')].map(e=>e.value); }
+  function jobModels(job) { return [...new Set((job.models||[]).map(model=>typeof model==='string'?model:model.id).filter(Boolean))]; }
+  function visibleModels(job) { const selected=new Set(selectedModels());return jobModels(job).filter(id=>selected.has(id)); }
+  function modelSelectionChanged() { updateCount();if(state.job){showStatus(state.job);renderResults(state.job);} }
   function updateCount() { $('sentence-count').textContent=`${texts().length}개 문장`; $('run-button').disabled=state.busy || !selectedModels().length || !texts().length; }
   function setBusy(busy) { state.busy=busy; $('form-fields').disabled=busy; $('run-button').innerHTML=busy ? '음성 생성 중…' : '비교 음성 만들기 <span aria-hidden="true">↗</span>'; updateCount(); }
   function machineLabel(machine) { return [machine?.cpu,machine?.arch,machine?.platform].filter(Boolean).join(' · ') || '로컬 CPU'; }
@@ -132,12 +138,22 @@
     if(!response.ok) { const error=new Error(typeof body.error==='string' ? body.error : `요청에 실패했습니다 (${response.status}).`); error.status=response.status; throw error; }
     return body;
   }
-  function fillPresets() {
-    if(!state.config)return;
-    $('texts').value=(state.config.samples||[]).map(s=>s.text).join('\n');
+  function fillSamples(samples) {
+    $('texts').value=samples.map(s=>typeof s==='string'?s:s.text).join('\n');
     const tags=$('sample-tags'); tags.replaceChildren();
-    [...new Set((state.config.samples||[]).map(s=>s.category).filter(Boolean))].forEach(t=>tags.append(el('span','tag',t)));
+    [...new Set(samples.map(s=>s.category).filter(Boolean))].forEach(t=>tags.append(el('span','tag',t)));
     updateCount();
+  }
+  function fillPresets() { if(state.config)fillSamples(state.config.samples||[]); }
+  async function loadCounseling() {
+    const button=$('load-counseling');button.disabled=true;
+    try {
+      const response=await api('/api/counseling-samples');
+      const samples=Array.isArray(response)?response:response.samples;
+      if(!Array.isArray(samples)||!samples.length||samples.some(s=>typeof s!=='string'&&(typeof s?.text!=='string')))throw new Error('상담 대사 형식을 확인할 수 없습니다.');
+      fillSamples(samples);$('form-error').textContent='';$('texts').focus();
+    } catch(error) { $('form-error').textContent=`상담 대사를 불러오지 못했습니다: ${error.message}`; }
+    finally { button.disabled=false; }
   }
   async function loadConfig(initial=false) {
     $('refresh-config').disabled=true;
@@ -149,12 +165,13 @@
       (config.models||[]).forEach(model=>{
         names[model.id]=model.name || names[model.id] || model.id;
         const label=el('label','model-option'+(model.available?'':' unavailable'));
-        const line=el('span','model-main'); const input=el('input'); input.type='checkbox'; input.name='model'; input.value=model.id; input.disabled=!model.available; input.checked=!!model.available&&(initial||oldSelected.has(model.id)||!previouslyAvailable.has(model.id)); input.addEventListener('change',updateCount);
+        const line=el('span','model-main'); const input=el('input'); input.type='checkbox'; input.name='model'; input.value=model.id; input.disabled=!model.available; input.checked=!!model.available&&(initial||oldSelected.has(model.id)||!previouslyAvailable.has(model.id)); input.addEventListener('change',modelSelectionChanged);
         line.append(input,el('span','model-name',names[model.id]),el('span','model-status',model.available?'준비됨':'미설치'));
         label.append(line); if(model.note)label.append(el('p','model-note',model.note)); list.append(label);
       });
       if(initial && !$('texts').value.trim())fillPresets();
       updateCount(); $('form-error').textContent='';
+      if(!initial&&state.job){showStatus(state.job);renderResults(state.job);}
       if(initial) {
         let activeId=null; try { activeId=sessionStorage.getItem(activeJobKey); } catch (_) {}
         if(activeId) { setBusy(true); await loadJob(activeId); }
@@ -165,10 +182,11 @@
   }
   function showStatus(job) {
     const running=['queued','running'].includes(job.status);
-    const partialErrors=Object.keys(job.errors||{}).length>0;
-    $('status-banner').className='banner visible'+(running?' running':'')+((job.status==='error'||partialErrors)?' error':'');
-    $('status-title').textContent=running?'비교 음성을 만들고 있습니다':job.status==='error'?'일부 또는 전체 음성 생성에 실패했습니다':partialErrors?'생성이 끝났습니다 · 일부 모델 오류':'비교 음성이 준비되었습니다';
-    const detail=job.progress|| (running?'모델을 준비하고 있습니다.':'아래에서 같은 문장의 목소리를 번갈아 들어보세요.');
+    const visible=visibleModels(job);const selectedErrors=visible.filter(id=>job.errors?.[id]);
+    const hasError=selectedErrors.length>0||!!job.errors?.runner;
+    $('status-banner').className='banner visible'+(running?' running':'')+(hasError?' error':'');
+    $('status-title').textContent=running?'비교 음성을 만들고 있습니다':hasError?'선택한 모델의 음성 생성에 오류가 있습니다':visible.length?'선택한 모델의 비교 음성이 준비되었습니다':'표시할 모델을 선택해 주세요';
+    const detail=running?(job.progress||'모델을 준비하고 있습니다.'):hasError?'아래 오류를 확인해 주세요. 생성에 성공한 음성은 재생할 수 있습니다.':visible.length?'아래에서 같은 문장의 목소리를 번갈아 들어보세요.':'기존 결과에 포함된 모델을 체크하거나 새 비교 음성을 만들어 주세요.';
     $('status-message').textContent=(typeof detail==='string'?detail:JSON.stringify(detail))+(job.errors?.runner?` ${job.errors.runner}`:'');
     $('status-time').textContent=running&&state.startTime?`${Math.floor((Date.now()-state.startTime)/1000)}초 경과`:'';
     setBusy(running);
@@ -186,21 +204,26 @@
     select.value=ratings[key]?.[field]||''; select.addEventListener('change',()=>saveRating(key,field,select.value));label.append(select);return label;
   }
   function renderResults(job) {
-    const signature=JSON.stringify({id:job.id,texts:job.texts,models:job.models,results:job.results,errors:job.errors,status:job.status});
+    const models=visibleModels(job);
+    const signature=JSON.stringify({id:job.id,texts:job.texts,models,results:job.results,errors:job.errors,status:job.status});
     if(signature===state.rendering)return;
     state.rendering=signature;
     stopPlayback();
     const container=$('sentence-results');container.replaceChildren();
-    const models=(job.models||[]).map(m=>typeof m==='string'?m:m.id);
     const rows=job.texts||[];
-    $('empty-state').classList.toggle('hidden',rows.length>0);$('results').classList.toggle('hidden',!rows.length);
-    const loads=models.map(id=>job.results?.[id]).filter(Boolean).map(r=>`${names[r.model]||r.model} ${number(r.load_seconds)}초`);
+    const hasRows=rows.length>0&&models.length>0;
+    $('empty-state').classList.toggle('hidden',hasRows);$('results').classList.toggle('hidden',!hasRows);
+    $('empty-title').textContent=rows.length?'선택한 모델의 결과가 없습니다':'비교할 준비가 되었습니다';
+    $('empty-message').textContent=rows.length?'기존 결과에 포함된 모델을 체크하거나 새 비교 음성을 만들어 주세요.':'문장과 모델을 고른 뒤 음성을 생성하면, 여기서 바로 들어볼 수 있어요.';
+    $('result-filter-note').textContent=`현재 선택한 ${models.length}개 모델을 이 작업의 합성 순서로 표시합니다. 모델 선택을 해제하면 해당 결과도 숨겨집니다.`;
+    const loads=models.filter(id=>job.results?.[id]).map(id=>`${names[id]||id} ${number(job.results[id].load_seconds)}초`);
     $('load-summary').textContent=`실행 환경: ${machineLabel(job.machine||state.config?.machine)}${loads.length?'  |  모델 로딩: '+loads.join(' · '):''}`;
+    if(!hasRows)return;
     rows.forEach((row,index)=>{
       const sentence=el('article','sentence');
       const header=el('div','sentence-header');header.append(el('span','sentence-number',String(index+1).padStart(2,'0')),el('p','sentence-text',row.text));
       const sequenceButton=el('button','sequence-button','모델 순서대로 듣기 ▶');sequenceButton.type='button';sequenceButton.setAttribute('aria-pressed','false');sequenceButton.setAttribute('aria-label',`${index+1}번 문장 모델 순서대로 듣기`);sequenceButton.addEventListener('click',()=>startSequence(sequenceButton,[...sentence.querySelectorAll('audio')]));header.append(sequenceButton);sentence.append(header);
-      const grid=el('div','audio-grid');grid.style.setProperty('--columns',Math.max(1,models.length));
+      const grid=el('div','audio-grid');grid.style.setProperty('--columns',Math.max(1,Math.min(3,models.length)));grid.style.setProperty('--medium-columns',Math.max(1,Math.min(2,models.length)));
       models.forEach(modelId=>{
         const card=el('section','audio-card');const result=job.results?.[modelId];const item=result?.items?.find(it=>it.id===row.id);
         const heading=el('div','audio-heading');heading.append(el('h3','',names[modelId]||modelId));if(result?.voice)heading.append(el('span','voice',result.voice));card.append(heading);
@@ -249,12 +272,13 @@
   $('export-csv').addEventListener('click',()=>{
     if(!state.job)return;const job=state.job;
     const rows=[['실행 ID','실행 CPU','문장 번호','문장','모델','음성','발음 정확도 (1-5)','자연스러움 (1-5)','메모','음성 길이 (초)','합성 시간 (초)','RTF','모델 로딩 (초)']];
-    (job.texts||[]).forEach((row,index)=>(job.models||[]).forEach(modelId=>{const result=job.results?.[modelId];const item=result?.items?.find(it=>it.id===row.id);const rating=ratings[ratingKey(job.id,modelId,row.id)]||{};if(item)rows.push([job.id,machineLabel(job.machine||state.config?.machine),index+1,row.text,names[modelId]||modelId,result.voice||'',rating.pronunciation||'',rating.naturalness||'',rating.note||'',item.seconds,item.generation_seconds,item.rtf,result.load_seconds]);}));
+    (job.texts||[]).forEach((row,index)=>jobModels(job).forEach(modelId=>{const result=job.results?.[modelId];const item=result?.items?.find(it=>it.id===row.id);const rating=ratings[ratingKey(job.id,modelId,row.id)]||{};if(item)rows.push([job.id,machineLabel(job.machine||state.config?.machine),index+1,row.text,names[modelId]||modelId,result.voice||'',rating.pronunciation||'',rating.naturalness||'',rating.note||'',item.seconds,item.generation_seconds,item.rtf,result.load_seconds]);}));
     // Prefix spreadsheet formula characters in user-controlled CSV values.
     const escape=value=>{let text=String(value??'');if(/^[=+@\-\t\r]/.test(text))text="'"+text;return '"'+text.replace(/"/g,'""')+'"';};
     const blob=new Blob(['\ufeff'+rows.map(row=>row.map(escape).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const anchor=el('a');anchor.href=url;anchor.download=`tts-evaluation-${job.id}.csv`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
   $('texts').addEventListener('input',updateCount);$('load-presets').addEventListener('click',fillPresets);$('refresh-config').addEventListener('click',()=>loadConfig(false));
+  $('load-counseling').addEventListener('click',loadCounseling);
   $('clear-input').addEventListener('click',()=>{$('texts').value='';$('sample-tags').replaceChildren();updateCount();$('texts').focus();});
   $('stop-playback').addEventListener('click',()=>stopPlayback(true));
   loadConfig(true);

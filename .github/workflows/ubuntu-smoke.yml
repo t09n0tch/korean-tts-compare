@@ -8,20 +8,58 @@ jobs:
   cpu-tts:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - model: supertonic
+            env: supertonic
+          - model: melo
+            env: melo
+          - model: piper
+            env: piper
+          - model: pocket100
+            env: pocket
+          - model: pocket300
+            env: pocket
+          - model: ppaso
+            env: ppaso
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
       - name: Install audio runtime
         run: sudo apt-get update && sudo apt-get install -y libsndfile1
-      - name: Install all three CPU models and synthesize Korean samples
-        run: bash setup-all.sh
+      - name: Install model and synthesize a Korean sample on CPU
+        run: bash setup/${{ matrix.model }}.sh
       - name: Check output and app syntax
+        env:
+          MODEL: ${{ matrix.model }}
         run: |
-          .venvs/piper/bin/python -m py_compile compare.py serve.py workers/*.py setup/melo_prepare.py
-          .venvs/piper/bin/python - <<'PY'
-          import json
+          .venvs/${{ matrix.env }}/bin/python -m py_compile compare.py serve.py workers/*.py setup/*.py
+          .venvs/${{ matrix.env }}/bin/python - <<'PY'
+          import json, os, wave
           from pathlib import Path
-          for model in ('supertonic', 'melo', 'piper'):
-              assert json.loads((Path('data') / f'{model}.ready.json').read_text())['ready']
-              assert (Path('outputs') / f'{model}-smoke' / 'smoke.wav').stat().st_size > 1000
+          model = os.environ['MODEL']
+          ready = json.loads((Path('data') / f'{model}.ready.json').read_text())
+          assert ready['ready'] and ready['device'] == 'cpu'
+          result = json.loads((Path('outputs') / f'{model}-smoke' / 'result.json').read_text())
+          assert result['model'] == model and result['device'] == 'cpu'
+          assert len(result['items']) == 1
+          for item in result['items']:
+              path = Path('outputs') / f'{model}-smoke' / item['path']
+              with wave.open(str(path)) as wav:
+                  assert wav.getnframes() > wav.getframerate() * 0.1
+                  assert wav.getnchannels() == 1
+                  frames = wav.readframes(wav.getnframes())
+                  assert any(frames), 'silent audio'
           PY
+      - name: Upload smoke diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpu-smoke-${{ matrix.model }}
+          path: |
+            outputs/${{ matrix.model }}-smoke/
+            data/${{ matrix.model }}.ready.json
+            data/${{ matrix.env }}.requirements.lock.txt
+          if-no-files-found: ignore

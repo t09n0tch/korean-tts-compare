@@ -1,0 +1,15 @@
+{
+  "kind": "synthetic_reference_audio",
+  "source_model": "supertone-oss-archive/supertonic-3",
+  "source_revision": "aafc6e32416a594460b32413efc49d7fe4ce6d46",
+  "voice": "F1",
+  "text": "오늘은 바람이 잔잔하고 하늘이 맑습니다. 잠시 숨을 고르고 편안한 목소리로 이야기를 시작하겠습니다.",
+  "seed": 42,
+  "steps": 8,
+  "speed": 1.0,
+  "sample_rate": 24000,
+  "sha256": "d37200f66cc532bf7d672e2370e6fd718247fd1e9e09c7bc3953d8072ba79dbe",
+  "purpose": "Shared synthetic voice prompt for Pocket-TTS Korean 100M and 300M. No recording of a user or real named individual. Reference text is separate from comparison samples.",
+  "source_weights_license": "OpenRAIL-M",
+  "source_url": "https://huggingface.co/supertone-oss-archive/supertonic-3"
+}
