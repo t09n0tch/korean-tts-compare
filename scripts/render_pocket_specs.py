@@ -149,5 +149,8 @@ text(72, 2269, "KOREAN CPU TTS COMPARE", 23, BLUE, True)
 text(1388, 2269, "2026.11.08", 23, MUTED)
 svg.append("</svg>")
 im.save(OUT / "pocket-korean-inference-specs.png", optimize=True)
+im.crop((72 * SCALE, 404 * SCALE, 1528 * SCALE + 1, 1432 * SCALE + 1)).save(
+    OUT / "pocket-korean-inference-table.png", optimize=True
+)
 (OUT / "pocket-korean-inference-specs.svg").write_text("\n".join(svg), encoding="utf-8")
 print(f"Rendered {W * SCALE}×{H * SCALE} PNG and editable SVG in {OUT}")
