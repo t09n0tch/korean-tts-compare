@@ -20,31 +20,31 @@
 
 > 그동안 혼자서 많은 걸 감당해 오셨던 것 같아요. 어떤 순간이 가장 힘들게 느껴지셨나요?
 
-[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s01.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s01.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s01.mp3)
+[▶ Supertonic 3](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/supertonic/s01.mp3) · [▶ MeloTTS Korean](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/melo/s01.mp3) · [▶ Piper KSS](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/piper/s01.mp3)
 
 ### 2. 감정 탐색
 
 > 그 상황에서 화가 나셨다고 말씀하셨는데, 혹시 그 감정 안에 서운함이나 두려움도 있었을까요?
 
-[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s02.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s02.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s02.mp3)
+[▶ Supertonic 3](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/supertonic/s02.mp3) · [▶ MeloTTS Korean](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/melo/s02.mp3) · [▶ Piper KSS](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/piper/s02.mp3)
 
 ### 3. 자기이해 유도
 
 > 스스로에게 굉장히 높은 기준을 적용하고 계신 것 같아요. 그 기준에 미치지 못했을 때 자신을 어떻게 바라보시나요?
 
-[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s03.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s03.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s03.mp3)
+[▶ Supertonic 3](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/supertonic/s03.mp3) · [▶ MeloTTS Korean](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/melo/s03.mp3) · [▶ Piper KSS](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/piper/s03.mp3)
 
 ### 4. 관점 전환
 
 > 친한 친구가 똑같은 상황을 겪고 있다면 어떤 말을 해주실 것 같으세요? 그 말을 자신에게도 해줄 수 있을까요?
 
-[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s04.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s04.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s04.mp3)
+[▶ Supertonic 3](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/supertonic/s04.mp3) · [▶ MeloTTS Korean](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/melo/s04.mp3) · [▶ Piper KSS](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/piper/s04.mp3)
 
 ### 5. 변화와 회복
 
 > 지금 당장 모든 문제를 해결할 필요는 없어요. 오늘 이야기한 것 중에서 가장 먼저 바꿔보고 싶은 부분은 무엇인가요?
 
-[▶ Supertonic 3](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/supertonic/s05.mp3) · [▶ MeloTTS Korean](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/melo/s05.mp3) · [▶ Piper KSS](https://raw.githubusercontent.com/t09n0tch/korean-tts-compare/main/examples/audio/piper/s05.mp3)
+[▶ Supertonic 3](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/supertonic/s05.mp3) · [▶ MeloTTS Korean](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/melo/s05.mp3) · [▶ Piper KSS](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/piper/s05.mp3)
 
 ## Windows 10/11: WSL2 Ubuntu
 
