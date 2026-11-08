@@ -65,6 +65,16 @@
 
 [▶ Pocket Korean 100M](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/pocket100/s05.mp3) · [▶ Pocket Korean 300M](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/pocket300/s05.mp3) · [▶ Ppaso-TTS](https://cdn.jsdelivr.net/gh/t09n0tch/korean-tts-compare@main/examples/audio/ppaso/s05.mp3)
 
+## Pocket Korean 개발자용 사양 이미지
+
+100M·300M의 모델 사양, 실제 프로세스 메모리, 합성 시간과 재현 설정을 한 장으로 정리했습니다. 아래 성능은 **Apple M6 / RAM 32GB / CPU 4스레드**의 상담 대사 5개 실측이며 Intel 성능을 뜻하지 않습니다. 메모리는 별도 실행에서 측정한 최대 RSS이고 공식 최소 RAM 요구량이 아닙니다.
+
+[PNG 원본 3200×4640](docs/images/pocket-korean-inference-specs.png) · [편집 가능한 SVG](docs/images/pocket-korean-inference-specs.svg) · [사양·메모리 측정 기록](examples/pocket-inference-specs.json) · [합성 시간 원본 기록](examples/counseling-benchmark.json)
+
+![Pocket Korean 100M과 300M의 CPU 추론 사양 비교: 가중치 438MB와 1.344GB, 최대 RSS 1.37GB와 3.05GB, 상담 대사 5개 합성 시간 2.39초와 8.19초. Apple M6 CPU 4스레드 실측.](docs/images/pocket-korean-inference-specs.png)
+
+이미지는 `uv run --with pillow python scripts/render_pocket_specs.py`로 다시 생성할 수 있습니다. 기본 글꼴은 macOS의 Apple SD Gothic Neo이며, 다른 운영체제에서는 `TTS_INFOGRAPHIC_FONT` 환경 변수에 한국어 글꼴 파일 경로를 지정하세요. PNG에는 글꼴이 이미 렌더링되어 있어 별도 설치 없이 볼 수 있습니다.
+
 ## Windows 10/11: WSL2 Ubuntu
 
 여섯 모델을 함께 쓰는 Windows 경로는 **WSL2 Ubuntu**입니다. PowerShell을 관리자 권한으로 열고 다음을 실행합니다. Windows가 재시작을 요청하면 재시작한 뒤 Ubuntu를 엽니다. 이미 WSL2 Ubuntu가 있다면 건너뜁니다.

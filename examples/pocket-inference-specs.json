@@ -1,0 +1,17 @@
+{
+  "measured_at": "2026-11-08",
+  "benchmark": "examples/counseling-benchmark.json",
+  "machine": {"cpu": "Apple M6", "memory_bytes": 34359738368, "os": "macOS 27.0.1", "threads": 4},
+  "memory_measurement": {
+    "method": "/usr/bin/time -l: maximum resident set size, bytes on macOS",
+    "scope": "Separate process per model; load and synthesize the same five counseling passages sequentially. Separate run from the published timing benchmark. Not an official minimum RAM requirement.",
+    "pocket100": {"maximum_rss_bytes": 1368227840},
+    "pocket300": {"maximum_rss_bytes": 3046752256}
+  },
+  "models": {
+    "pocket100": {"parameters": 109502146, "flow_lm_layers": 6, "weights_bytes": 438033312, "source": "https://huggingface.co/seastar105/pocket-tts-korean-100m"},
+    "pocket300": {"parameters": 336067970, "flow_lm_layers": 24, "weights_bytes": 1344315200, "source": "https://huggingface.co/seastar105/pocket-tts-korean-300m"}
+  },
+  "runtime": {"python": "3.11", "pytorch": "2.11.0", "pocket_tts": "4.0.1", "dtype": "float32", "device": "cpu", "threads": 4, "seed": 42, "temperature": 0.3, "sampler_decode_steps": 1, "eos_threshold": -1.0, "reference": "examples/reference/supertonic-f1.wav", "reference_seconds": 8.7729},
+  "units": "MB and GB are decimal units (10^6 and 10^9 bytes)."
+}
