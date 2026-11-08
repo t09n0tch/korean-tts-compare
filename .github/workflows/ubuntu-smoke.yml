@@ -1,0 +1,27 @@
+name: Ubuntu CPU smoke
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  cpu-tts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install audio runtime
+        run: sudo apt-get update && sudo apt-get install -y libsndfile1
+      - name: Install all three CPU models and synthesize Korean samples
+        run: bash setup-all.sh
+      - name: Check output and app syntax
+        run: |
+          .venvs/piper/bin/python -m py_compile compare.py serve.py workers/*.py setup/melo_prepare.py
+          .venvs/piper/bin/python - <<'PY'
+          import json
+          from pathlib import Path
+          for model in ('supertonic', 'melo', 'piper'):
+              assert json.loads((Path('data') / f'{model}.ready.json').read_text())['ready']
+              assert (Path('outputs') / f'{model}-smoke' / 'smoke.wav').stat().st_size > 1000
+          PY

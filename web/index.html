@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>한국어 TTS 발음 비교</title>
+  <style>
+    :root{--ink:#172b29;--muted:#687570;--paper:#f5f5ef;--card:#fff;--line:#dce3dc;--accent:#1f6251;--soft:#e8f1eb;--warn:#8b5018;--red:#a43939;--shadow:0 4px 20px #253b2606}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.6}button,input,textarea,select{font:inherit}button,a,input,textarea,select{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}button,a,input,textarea,select{outline-offset:4px}:focus-visible{outline:3px solid #60a58f}button{border:1px solid var(--line);border-radius:9px;padding:9px 14px;background:#fff;color:var(--ink);font-weight:600}button:hover:not(:disabled){background:#edf3ee}button.primary{background:var(--accent);color:white;border-color:var(--accent);padding:12px 22px}button.primary:hover:not(:disabled){background:#164b3e}button.text-button{background:transparent;border:0;color:var(--accent);padding:6px 0}a{color:var(--accent)}.shell{max-width:1280px;margin:auto;padding:0 36px 60px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:750;letter-spacing:.1em}.mark{width:28px;height:28px;display:flex;gap:3px;align-items:center;justify-content:center;background:var(--accent);border-radius:8px}.mark i{display:block;background:white;width:3px;border-radius:3px;height:10px}.mark i:nth-child(2){height:17px}.mark i:nth-child(3){height:13px}.machine{font-size:12px;color:var(--muted);text-align:right}.hero{padding:37px 0 26px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:750;color:var(--accent);margin:0 0 8px}.hero h1{font-size:34px;letter-spacing:-1.3px;line-height:1.3;margin:0 0 12px;font-weight:750}.hero p{margin:0;color:var(--muted);font-size:15px}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:22px;align-items:start}.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}.panel-content{padding:23px}.panel-title{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}h2{font-size:17px;margin:0;letter-spacing:-.3px}.small{font-size:12px;color:var(--muted)}.section-index{color:var(--accent);font-size:12px;font-weight:700;margin-right:8px}.textarea-label{display:block;margin:0 0 7px;font-size:12px;color:var(--muted)}textarea{width:100%;resize:vertical;border:1px solid var(--line);border-radius:9px;background:#fbfcf9;padding:14px;color:var(--ink);line-height:1.8;min-height:240px}textarea:focus{border-color:#65a18d}.editor-footer{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:8px}.sample-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:15px}.tag{display:inline-block;border-radius:4px;background:#f0f3ed;font-size:11px;color:#627164;padding:3px 7px}.config-footer{border-top:1px solid var(--line);padding:16px 23px;display:flex;align-items:center;justify-content:space-between;gap:18px;background:#fcfcf9}.config-footer p{margin:0;font-size:12px;color:var(--muted)}.model-list{display:grid;gap:9px}.model-option{display:block;border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff}.model-option:has(input:checked){border-color:#6d9b86;background:#f1f7f2}.model-option.unavailable{background:#f5f5f2;color:#828b82}.model-main{display:flex;gap:10px;align-items:center}.model-main input{accent-color:var(--accent);width:16px;height:16px;margin:0}.model-name{font-size:13px;font-weight:700}.model-status{margin-left:auto;font-size:10px;background:#e2eee5;color:#427252;padding:2px 6px;border-radius:4px;white-space:nowrap}.unavailable .model-status{background:#e9e9e4;color:#85877f}.model-note{font-size:11px;line-height:1.55;color:var(--muted);margin:5px 0 0 26px}.settings-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.settings-row label{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}.settings-row select,.settings-row input{width:100%;height:37px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 9px}.model-footer{border-top:1px solid var(--line);margin-top:18px;padding-top:13px;font-size:11px;color:var(--muted)}fieldset{border:0;padding:0;margin:0;min-width:0}.banner{display:none;margin-top:22px;background:#eef4ed;border:1px solid #cfdfd1;border-radius:10px;padding:15px 18px}.banner.visible{display:flex;align-items:center;gap:13px}.banner.error{background:#fff1ed;border-color:#ecd3cb}.status-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}.banner.error .status-dot{background:var(--red)}.banner.running .status-dot{animation:pulse 1.4s infinite}.status-copy{flex:1;min-width:0}.status-copy strong{font-size:13px;display:block}.status-copy p{margin:2px 0 0;font-size:12px;color:var(--muted);overflow-wrap:anywhere}.status-time{font-size:12px;color:var(--muted);white-space:nowrap}@keyframes pulse{50%{opacity:.25}}.results{margin-top:35px}.results-heading{display:flex;justify-content:space-between;gap:15px;align-items:center;margin-bottom:14px}.results-heading h2{font-size:22px}.results-subtitle{margin:4px 0 0;font-size:12px;color:var(--muted)}.result-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.sentence{margin-bottom:20px;border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden;box-shadow:var(--shadow)}.sentence-header{padding:18px 22px;background:#f0f3eb;border-bottom:1px solid var(--line);display:flex;align-items:start;gap:13px}.sentence-number{font:700 12px ui-monospace,SFMono-Regular,monospace;color:#7c8b79;padding-top:3px}.sentence-text{margin:0;font-weight:600;line-height:1.75;word-break:keep-all;font-size:15px}.audio-grid{display:grid;grid-template-columns:repeat(var(--columns,3),minmax(0,1fr))}.audio-card{padding:18px 20px;min-width:0;border-right:1px solid var(--line)}.audio-card:last-child{border-right:0}.audio-heading{display:flex;align-items:center;gap:8px;justify-content:space-between;margin:0 0 9px}.audio-heading h3{font-size:14px;margin:0}.voice{font-size:10px;padding:2px 6px;background:#f0f2ed;border-radius:4px;color:var(--muted);white-space:nowrap}audio{width:100%;height:38px;display:block;margin:12px 0 14px}.metrics{display:flex;gap:12px;justify-content:space-between;margin-bottom:16px}.metric span{display:block;font-size:10px;color:var(--muted)}.metric strong{font-size:12px;font-weight:650;font-variant-numeric:tabular-nums}.ratings{border-top:1px dashed var(--line);padding-top:13px;display:grid;grid-template-columns:1fr 1fr;gap:9px}.ratings label{font-size:11px;color:var(--muted);display:block}.ratings select{display:block;width:100%;margin-top:4px;border:1px solid var(--line);border-radius:6px;padding:5px 7px;background:#fff;font-size:12px}.rating-note{grid-column:1/-1}.rating-note input{width:100%;border:1px solid var(--line);border-radius:6px;padding:7px 8px;font-size:12px;display:block;margin-top:4px}.download{font-size:10px;text-decoration:none;color:var(--muted)}.pending{font-size:12px;color:var(--muted);padding:20px 0;line-height:1.7}.model-error{font-size:12px;color:var(--red);white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto}.empty{padding:33px;text-align:center;border:1px dashed #cbd6ca;border-radius:13px;margin-top:30px}.empty-icon{color:#6f9079;font:700 25px ui-monospace,monospace;letter-spacing:4px}.empty h2{font-size:15px;margin:9px 0 4px}.empty p{font-size:12px;margin:0;color:var(--muted)}.footnote{font-size:11px;color:var(--muted);margin-top:22px;border-top:1px solid var(--line);padding-top:16px}.load-summary{font-size:11px;color:var(--muted);margin:8px 0 18px}.hidden{display:none!important}.notice{font-size:12px;color:var(--red);margin:10px 0 0;min-height:0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:1000px){.workspace{grid-template-columns:minmax(0,1fr) 285px}.shell{padding:0 24px 40px}.audio-card{padding:16px 13px}.metrics{gap:7px}}
+    @media(max-width:760px){.shell{padding:0 16px 30px}.topbar{padding:18px 0;align-items:start}.brand{font-size:11px}.machine{max-width:48%;font-size:10px}.hero{padding:27px 0 22px}.hero h1{font-size:28px}.hero p{font-size:13px}.workspace{grid-template-columns:1fr;gap:15px}.panel-content{padding:18px}.model-list{grid-template-columns:1fr}.settings-row{margin-top:13px}.config-footer{padding:15px 18px}.audio-grid{grid-template-columns:1fr}.audio-card{border-right:0;border-bottom:1px solid var(--line);padding:18px}.audio-card:last-child{border-bottom:0}.results-heading{align-items:start;flex-direction:column}.sentence-header{padding:16px}.results-heading h2{font-size:20px}.metrics{justify-content:start;gap:30px}.ratings{grid-template-columns:1fr 1fr}.status-time{display:none}.editor-footer{align-items:start}.sample-tags{margin-top:12px}}
+    .editor-actions{display:flex;gap:13px;flex-wrap:wrap;justify-content:flex-end}.editor-actions button{font-size:12px}.sentence-text{flex:1;min-width:0;overflow-wrap:anywhere}.sequence-button{flex:none;font-size:11px;white-space:nowrap;padding:7px 10px}.sequence-button[aria-pressed="true"]{background:var(--accent);color:white;border-color:var(--accent)}
+    @media(max-width:760px){.panel-title{flex-wrap:wrap;gap:8px}.sentence-header{flex-wrap:wrap}.sequence-button{margin-left:26px}.sentence-text{flex-basis:calc(100% - 40px)}.result-actions{width:100%}.result-actions .small{flex-basis:100%}}
+    @media(prefers-reduced-motion:reduce){.banner.running .status-dot{animation:none}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header class="topbar">
+    <div class="brand"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span> KOREAN VOICE LAB</div>
+    <div class="machine" id="machine">로컬 실행 환경 확인 중…</div>
+  </header>
+  <section class="hero">
+    <p class="eyebrow">Local · CPU inference</p>
+    <h1>같은 문장, 다른 목소리.</h1>
+    <p>문장을 직접 입력하고 → 비교 음성을 만든 뒤 → 모델별로 재생해 한국어 발음과 문장 흐름을 비교해 보세요.</p>
+  </section>
+  <form id="compare-form">
+    <fieldset id="form-fields">
+      <div class="workspace">
+        <section class="panel">
+          <div class="panel-content">
+            <div class="panel-title"><h2><span class="section-index">01</span>비교할 문장</h2><div class="editor-actions"><button type="button" class="text-button" id="clear-input">입력 비우기</button><button type="button" class="text-button" id="load-presets">기본 문장 불러오기</button></div></div>
+            <label class="textarea-label" for="texts">한 줄에 한 문장씩 입력하세요. 최대 20문장, 문장당 500자까지 같은 원문을 전달합니다.</label>
+            <textarea id="texts" spellcheck="false" placeholder="안녕하세요. 오늘은 한국어 음성 합성을 비교해 보겠습니다." required></textarea>
+            <div class="editor-footer"><span class="small" id="sentence-count">0개 문장</span><span class="small">숫자와 영문을 그대로 넣어 읽기 방식도 비교해 보세요.</span></div>
+            <div class="sample-tags" id="sample-tags" aria-label="기본 문장 유형"></div>
+          </div>
+          <div class="config-footer"><p>모델별로 순서대로 합성합니다.<br>처음 실행할 때는 모델 로딩이 더 걸릴 수 있어요.</p><button class="primary" type="submit" id="run-button" disabled>비교 음성 만들기 <span aria-hidden="true">↗</span></button></div>
+        </section>
+        <aside class="panel">
+          <div class="panel-content">
+            <div class="panel-title"><h2><span class="section-index">02</span>모델 선택</h2><button type="button" class="text-button" id="refresh-config" aria-label="모델 설치 상태 새로 확인">새로 확인</button></div>
+            <div class="model-list" id="model-list"><p class="small">모델 상태를 확인하고 있습니다.</p></div>
+            <div class="settings-row">
+              <div><label for="supertonic-voice">Supertonic 음성</label><select id="supertonic-voice"><option value="F1">F1</option><option value="M1">M1</option><option value="F2">F2</option><option value="M2">M2</option></select></div>
+              <div><label for="threads">CPU 스레드</label><input id="threads" type="number" min="1" max="16" step="1" value="4" required></div>
+            </div>
+            <div class="model-footer">GPU 없이 이 컴퓨터의 CPU를 사용합니다. 목소리 자체의 차이와 발음 오류를 구분해서 들어보세요.</div>
+          </div>
+        </aside>
+      </div>
+    </fieldset>
+  </form>
+  <p class="notice" id="form-error" role="alert"></p>
+  <section class="banner" id="status-banner" aria-live="polite" aria-atomic="true">
+    <span class="status-dot" aria-hidden="true"></span><div class="status-copy"><strong id="status-title"></strong><p id="status-message"></p></div><span class="status-time" id="status-time"></span>
+  </section>
+  <section class="empty" id="empty-state"><div class="empty-icon" aria-hidden="true">ııIıı</div><h2>비교할 준비가 되었습니다</h2><p>문장과 모델을 고른 뒤 음성을 생성하면, 여기서 바로 들어볼 수 있어요.</p></section>
+  <section class="results hidden" id="results">
+    <div class="results-heading"><div><h2>문장별 듣기 비교</h2><p class="results-subtitle">각 음성을 따로 재생하거나, 한 문장을 모델 순서대로 이어서 들어보세요.</p></div><div class="result-actions"><span class="small">평가는 이 브라우저에 자동 저장</span><button type="button" id="stop-playback" disabled>재생 멈추기 ■</button><button type="button" id="export-csv">평가 CSV 저장 ↓</button></div></div>
+    <p class="load-summary" id="load-summary"></p>
+    <div id="sentence-results"></div>
+    <p class="footnote">합성 시간은 모델 로딩을 제외한 경과 시간입니다. RTF = 합성 시간 ÷ 음성 길이이며, 1보다 작으면 재생 시간보다 빠르게 생성한 것입니다. 이 컴퓨터에서의 결과이므로 다른 CPU의 성능과 직접 비교하지 마세요. 평가는 자동 채점이 아닌 직접 들은 기록입니다.</p>
+  </section>
+</main>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const state = {config:null, job:null, poll:null, rendering:'', startTime:0, busy:false};
+  const names = {supertonic:'Supertonic 3',melo:'MeloTTS Korean',piper:'Piper KSS'};
+  const storageKey = 'korean-voice-lab-ratings-v1';
+  const activeJobKey = 'korean-voice-lab-active-job-v1';
+  let ratings = {};
+  try { const saved=JSON.parse(localStorage.getItem(storageKey) || '{}'); if(saved&&typeof saved==='object'&&!Array.isArray(saved))ratings=saved; } catch (_) {}
+  let sequence=null;
+  function updatePlaybackButton() { $('stop-playback').disabled=![...document.querySelectorAll('audio')].some(audio=>!audio.paused&&!audio.ended); }
+  function stopPlayback(reset=false,keep=null) {
+    const previous=sequence; sequence=null;
+    if(previous) { previous.cleanup?.(); previous.button.textContent='모델 순서대로 듣기 ▶'; previous.button.setAttribute('aria-pressed','false'); }
+    document.querySelectorAll('audio').forEach(audio=>{if(audio!==keep){audio.pause();if(reset){try{audio.currentTime=0;}catch(_){}}}});
+    updatePlaybackButton();
+  }
+  function playbackError(error) {
+    stopPlayback();
+    $('form-error').textContent=`음성을 재생하지 못했습니다${error?.message?': '+error.message:''}. 개별 재생 버튼을 눌러 다시 시도해 주세요.`;
+  }
+  function startSequence(button,audios) {
+    stopPlayback(); if(!audios.length)return;
+    $('form-error').textContent='';
+    const session={button,audios,index:0,current:null,cleanup:null}; sequence=session;
+    button.textContent='순서대로 듣는 중…';button.setAttribute('aria-pressed','true');
+    function next() {
+      if(sequence!==session)return;
+      session.cleanup?.();session.cleanup=null;
+      const audio=session.audios[session.index++];
+      if(!audio){stopPlayback();return;}
+      session.current=audio;
+      const ended=()=>{if(sequence===session&&audio.ended)next();};
+      const paused=()=>{if(sequence===session&&audio.paused&&!audio.ended)stopPlayback();};
+      audio.addEventListener('ended',ended);audio.addEventListener('pause',paused);
+      session.cleanup=()=>{audio.removeEventListener('ended',ended);audio.removeEventListener('pause',paused);};
+      try {
+        audio.currentTime=0;
+        const promise=audio.play();
+        Promise.resolve(promise).catch(error=>{if(sequence===session)playbackError(error);});
+      } catch(error) { if(sequence===session)playbackError(error); }
+    }
+    next();
+  }
+  function attachPlaybackEvents(audio) {
+    audio.addEventListener('play',()=>{
+      if(sequence&&sequence.current!==audio)stopPlayback(false,audio);
+      document.querySelectorAll('audio').forEach(other=>{if(other!==audio)other.pause();});
+      updatePlaybackButton();
+    });
+    audio.addEventListener('pause',updatePlaybackButton);audio.addEventListener('ended',updatePlaybackButton);
+    audio.addEventListener('error',()=>playbackError(new Error('오디오 파일을 불러올 수 없습니다')));
+  }
+  function el(tag, cls, text) { const e=document.createElement(tag); if(cls)e.className=cls; if(text!==undefined)e.textContent=text; return e; }
+  function texts() { return $('texts').value.split(/\r?\n/).map(t=>t.trim()).filter(Boolean); }
+  function selectedModels() { return [...document.querySelectorAll('input[name="model"]:checked')].map(e=>e.value); }
+  function updateCount() { $('sentence-count').textContent=`${texts().length}개 문장`; $('run-button').disabled=state.busy || !selectedModels().length || !texts().length; }
+  function setBusy(busy) { state.busy=busy; $('form-fields').disabled=busy; $('run-button').innerHTML=busy ? '음성 생성 중…' : '비교 음성 만들기 <span aria-hidden="true">↗</span>'; updateCount(); }
+  function machineLabel(machine) { return [machine?.cpu,machine?.arch,machine?.platform].filter(Boolean).join(' · ') || '로컬 CPU'; }
+  async function api(url, options) {
+    const response=await fetch(url,options);
+    let body;
+    try { body=await response.json(); } catch (_) { throw new Error(`서버 응답을 읽을 수 없습니다 (${response.status}).`); }
+    if(!response.ok) { const error=new Error(typeof body.error==='string' ? body.error : `요청에 실패했습니다 (${response.status}).`); error.status=response.status; throw error; }
+    return body;
+  }
+  function fillPresets() {
+    if(!state.config)return;
+    $('texts').value=(state.config.samples||[]).map(s=>s.text).join('\n');
+    const tags=$('sample-tags'); tags.replaceChildren();
+    [...new Set((state.config.samples||[]).map(s=>s.category).filter(Boolean))].forEach(t=>tags.append(el('span','tag',t)));
+    updateCount();
+  }
+  async function loadConfig(initial=false) {
+    $('refresh-config').disabled=true;
+    try {
+      const previouslyAvailable=new Set((state.config?.models||[]).filter(m=>m.available).map(m=>m.id));
+      const config=await api('/api/config'); state.config=config;
+      $('machine').textContent=machineLabel(config.machine);
+      const oldSelected=new Set(selectedModels()); const list=$('model-list'); list.replaceChildren();
+      (config.models||[]).forEach(model=>{
+        names[model.id]=model.name || names[model.id] || model.id;
+        const label=el('label','model-option'+(model.available?'':' unavailable'));
+        const line=el('span','model-main'); const input=el('input'); input.type='checkbox'; input.name='model'; input.value=model.id; input.disabled=!model.available; input.checked=!!model.available&&(initial||oldSelected.has(model.id)||!previouslyAvailable.has(model.id)); input.addEventListener('change',updateCount);
+        line.append(input,el('span','model-name',names[model.id]),el('span','model-status',model.available?'준비됨':'미설치'));
+        label.append(line); if(model.note)label.append(el('p','model-note',model.note)); list.append(label);
+      });
+      if(initial && !$('texts').value.trim())fillPresets();
+      updateCount(); $('form-error').textContent='';
+      if(initial) {
+        let activeId=null; try { activeId=sessionStorage.getItem(activeJobKey); } catch (_) {}
+        if(activeId) { setBusy(true); await loadJob(activeId); }
+        else if(config.latest)await loadJob(config.latest);
+      }
+    } catch(error) { $('form-error').textContent=`연결 오류: ${error.message} 로컬 서버가 실행 중인지 확인해 주세요.`; }
+    finally { $('refresh-config').disabled=state.busy; }
+  }
+  function showStatus(job) {
+    const running=['queued','running'].includes(job.status);
+    const partialErrors=Object.keys(job.errors||{}).length>0;
+    $('status-banner').className='banner visible'+(running?' running':'')+((job.status==='error'||partialErrors)?' error':'');
+    $('status-title').textContent=running?'비교 음성을 만들고 있습니다':job.status==='error'?'일부 또는 전체 음성 생성에 실패했습니다':partialErrors?'생성이 끝났습니다 · 일부 모델 오류':'비교 음성이 준비되었습니다';
+    const detail=job.progress|| (running?'모델을 준비하고 있습니다.':'아래에서 같은 문장의 목소리를 번갈아 들어보세요.');
+    $('status-message').textContent=(typeof detail==='string'?detail:JSON.stringify(detail))+(job.errors?.runner?` ${job.errors.runner}`:'');
+    $('status-time').textContent=running&&state.startTime?`${Math.floor((Date.now()-state.startTime)/1000)}초 경과`:'';
+    setBusy(running);
+  }
+  function number(value,digits=2) { return typeof value==='number'&&Number.isFinite(value)?value.toFixed(digits):'—'; }
+  function ratingKey(jobId,modelId,textId) { return `${jobId}/${modelId}/${textId}`; }
+  function saveRating(key,field,value) {
+    ratings[key]={...(ratings[key]||{}),[field]:value};
+    try { localStorage.setItem(storageKey,JSON.stringify(ratings)); } catch (_) { $('form-error').textContent='브라우저 저장 공간을 사용할 수 없습니다. CSV로 평가를 저장해 주세요.'; }
+  }
+  function ratingControl(labelText, field, key, elementId) {
+    const label=el('label','',labelText); const select=el('select'); select.id=elementId; label.htmlFor=elementId;
+    const choices=field==='pronunciation' ? [['','선택'],['1','1 · 오류 많음'],['2','2 · 오류 있음'],['3','3 · 대체로 정확'],['4','4 · 거의 정확'],['5','5 · 정확함']] : [['','선택'],['1','1 · 많이 어색'],['2','2 · 다소 어색'],['3','3 · 보통'],['4','4 · 자연스러움'],['5','5 · 매우 자연스러움']];
+    choices.forEach(([value,text])=>{const option=el('option','',text);option.value=value;select.append(option);});
+    select.value=ratings[key]?.[field]||''; select.addEventListener('change',()=>saveRating(key,field,select.value));label.append(select);return label;
+  }
+  function renderResults(job) {
+    const signature=JSON.stringify({id:job.id,texts:job.texts,models:job.models,results:job.results,errors:job.errors,status:job.status});
+    if(signature===state.rendering)return;
+    state.rendering=signature;
+    stopPlayback();
+    const container=$('sentence-results');container.replaceChildren();
+    const models=(job.models||[]).map(m=>typeof m==='string'?m:m.id);
+    const rows=job.texts||[];
+    $('empty-state').classList.toggle('hidden',rows.length>0);$('results').classList.toggle('hidden',!rows.length);
+    const loads=models.map(id=>job.results?.[id]).filter(Boolean).map(r=>`${names[r.model]||r.model} ${number(r.load_seconds)}초`);
+    $('load-summary').textContent=`실행 환경: ${machineLabel(job.machine||state.config?.machine)}${loads.length?'  |  모델 로딩: '+loads.join(' · '):''}`;
+    rows.forEach((row,index)=>{
+      const sentence=el('article','sentence');
+      const header=el('div','sentence-header');header.append(el('span','sentence-number',String(index+1).padStart(2,'0')),el('p','sentence-text',row.text));
+      const sequenceButton=el('button','sequence-button','모델 순서대로 듣기 ▶');sequenceButton.type='button';sequenceButton.setAttribute('aria-pressed','false');sequenceButton.setAttribute('aria-label',`${index+1}번 문장 모델 순서대로 듣기`);sequenceButton.addEventListener('click',()=>startSequence(sequenceButton,[...sentence.querySelectorAll('audio')]));header.append(sequenceButton);sentence.append(header);
+      const grid=el('div','audio-grid');grid.style.setProperty('--columns',Math.max(1,models.length));
+      models.forEach(modelId=>{
+        const card=el('section','audio-card');const result=job.results?.[modelId];const item=result?.items?.find(it=>it.id===row.id);
+        const heading=el('div','audio-heading');heading.append(el('h3','',names[modelId]||modelId));if(result?.voice)heading.append(el('span','voice',result.voice));card.append(heading);
+        if(item){
+          const audio=el('audio');audio.controls=true;audio.preload='none';audio.src=item.audio_url||`/outputs/${encodeURIComponent(job.id)}/${encodeURIComponent(modelId)}/${encodeURIComponent(item.path)}`;audio.setAttribute('aria-label',`${index+1}번 문장 ${names[modelId]||modelId} 음성`);attachPlaybackEvents(audio);card.append(audio);
+          const metrics=el('div','metrics');[['음성 길이',`${number(item.seconds)}초`],['합성 시간',`${number(item.generation_seconds)}초`],['RTF',number(item.rtf,3)]].forEach(([label,value])=>{const metric=el('div','metric');metric.append(el('span','',label),el('strong','',value));metrics.append(metric);});card.append(metrics);
+          const key=ratingKey(job.id,modelId,row.id);const fields=el('div','ratings');const prefix=`rating-${index}-${modelId}`;
+          fields.append(ratingControl('발음 정확도','pronunciation',key,prefix+'-pronunciation'),ratingControl('자연스러움','naturalness',key,prefix+'-naturalness'));
+          const noteLabel=el('label','rating-note','듣기 메모');const note=el('input');note.type='text';note.id=prefix+'-note';noteLabel.htmlFor=note.id;note.placeholder='예: 받침이 뭉개짐, 숫자를 잘 읽음';note.value=ratings[key]?.note||'';note.addEventListener('input',()=>saveRating(key,'note',note.value));noteLabel.append(note);fields.append(noteLabel);card.append(fields);
+          const download=el('a','download','WAV 파일 저장 ↓');download.href=audio.src;download.download=`${modelId}-${row.id}.wav`;download.style.display='inline-block';download.style.marginTop='11px';card.append(download);
+        } else if(job.errors?.[modelId]) { card.append(el('p','model-error',job.errors[modelId])); }
+        else { card.append(el('p','pending',['running','queued'].includes(job.status)?'이 모델의 음성을 준비하고 있습니다…':'생성된 음성이 없습니다.')); }
+        grid.append(card);
+      });sentence.append(grid);sequenceButton.disabled=!sentence.querySelector('audio');container.append(sentence);
+    });
+  }
+  async function loadJob(id) {
+    if(state.poll){clearTimeout(state.poll);state.poll=null;}
+    try {
+      const job=await api(`/api/jobs/${encodeURIComponent(id)}`);state.job=job;showStatus(job);renderResults(job);
+      if(['queued','running'].includes(job.status))state.poll=setTimeout(()=>loadJob(id),2000);
+      else { try { sessionStorage.removeItem(activeJobKey); } catch (_) {} }
+    } catch(error) {
+      $('form-error').textContent=`결과를 불러오지 못했습니다: ${error.message}`;
+      if(error.status===404) {
+        setBusy(false); try { sessionStorage.removeItem(activeJobKey); } catch (_) {}
+        $('status-banner').className='banner visible error';$('status-title').textContent='저장된 작업을 찾을 수 없습니다';$('status-message').textContent='새 비교 음성을 생성해 주세요.';$('status-time').textContent='';
+      } else if(state.busy){$('status-message').textContent='서버 연결을 다시 확인하고 있습니다. 새 작업을 시작하지 않고 상태를 재확인합니다.';state.poll=setTimeout(()=>loadJob(id),4000);}
+    }
+  }
+  $('compare-form').addEventListener('submit',async event=>{
+    event.preventDefault();if(state.busy)return;
+    const inputTexts=texts();const models=selectedModels();const threads=Number($('threads').value);
+    if(!inputTexts.length||!models.length){$('form-error').textContent='비교할 문장과 모델을 선택해 주세요.';return;}
+    if(inputTexts.length>20){$('form-error').textContent='비교할 문장은 최대 20개까지 입력해 주세요.';return;}
+    const tooLong=inputTexts.findIndex(text=>[...text].length>500);
+    if(tooLong>=0){$('form-error').textContent=`${tooLong+1}번째 문장이 500자를 넘었습니다. 문장을 나눠 주세요.`;return;}
+    if(!Number.isInteger(threads)||threads<1||threads>16){$('form-error').textContent='CPU 스레드는 1에서 16 사이의 정수로 입력해 주세요.';return;}
+    $('form-error').textContent='';stopPlayback();setBusy(true);state.startTime=Date.now();
+    try {
+      const created=await api('/api/jobs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({texts:inputTexts,models,threads,supertonic_voice:$('supertonic-voice').value})});
+      try { sessionStorage.setItem(activeJobKey,created.id); } catch (_) {}
+      await loadJob(created.id);
+    } catch(error){$('form-error').textContent=error.message;setBusy(false);}
+  });
+  $('export-csv').addEventListener('click',()=>{
+    if(!state.job)return;const job=state.job;
+    const rows=[['실행 ID','실행 CPU','문장 번호','문장','모델','음성','발음 정확도 (1-5)','자연스러움 (1-5)','메모','음성 길이 (초)','합성 시간 (초)','RTF','모델 로딩 (초)']];
+    (job.texts||[]).forEach((row,index)=>(job.models||[]).forEach(modelId=>{const result=job.results?.[modelId];const item=result?.items?.find(it=>it.id===row.id);const rating=ratings[ratingKey(job.id,modelId,row.id)]||{};if(item)rows.push([job.id,machineLabel(job.machine||state.config?.machine),index+1,row.text,names[modelId]||modelId,result.voice||'',rating.pronunciation||'',rating.naturalness||'',rating.note||'',item.seconds,item.generation_seconds,item.rtf,result.load_seconds]);}));
+    // Prefix spreadsheet formula characters in user-controlled CSV values.
+    const escape=value=>{let text=String(value??'');if(/^[=+@\-\t\r]/.test(text))text="'"+text;return '"'+text.replace(/"/g,'""')+'"';};
+    const blob=new Blob(['\ufeff'+rows.map(row=>row.map(escape).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const anchor=el('a');anchor.href=url;anchor.download=`tts-evaluation-${job.id}.csv`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
+  $('texts').addEventListener('input',updateCount);$('load-presets').addEventListener('click',fillPresets);$('refresh-config').addEventListener('click',()=>loadConfig(false));
+  $('clear-input').addEventListener('click',()=>{$('texts').value='';$('sample-tags').replaceChildren();updateCount();$('texts').focus();});
+  $('stop-playback').addEventListener('click',()=>stopPlayback(true));
+  loadConfig(true);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.venvs/
+cache/
+models/
+vendor/
+outputs/
+logs/
+__pycache__/
+.server.pid
+.mobile-access.json
+.mobile.pid
+.tunnel.pid
+.DS_Store
+data/*
+!data/samples.json
