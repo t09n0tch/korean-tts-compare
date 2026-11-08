@@ -67,7 +67,7 @@
 
 ## Pocket Korean 개발자용 사양 이미지
 
-100M·300M의 모델 사양, 실제 프로세스 메모리, 합성 시간과 재현 설정을 한 장으로 정리했습니다. 아래 성능은 **Apple M6 / RAM 32GB / CPU 4스레드**의 상담 대사 5개 실측이며 Intel 성능을 뜻하지 않습니다. 메모리는 별도 실행에서 측정한 최대 RSS이고 공식 최소 RAM 요구량이 아닙니다.
+**Apple M6 / RAM 32GB / CPU 4스레드**에서 상담 대사 5개로 실험한 결과입니다. 실험에 사용한 100M·300M 모델 사양, 실제 프로세스 메모리, 합성 시간과 재현 설정을 한 장으로 정리했습니다. 메모리는 모델별 별도 실행에서 로딩·합성 중 측정한 프로세스 최대 RSS입니다.
 
 [PNG 원본 3200×4640](docs/images/pocket-korean-inference-specs.png) · [편집 가능한 SVG](docs/images/pocket-korean-inference-specs.svg) · [사양·메모리 측정 기록](examples/pocket-inference-specs.json) · [합성 시간 원본 기록](examples/counseling-benchmark.json)
 

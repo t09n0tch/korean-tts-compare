@@ -22,7 +22,7 @@ BG, LINE = "#F3F6FB", "#DCE3EE"
 im = Image.new("RGB", (W * SCALE, H * SCALE), BG)
 draw = ImageDraw.Draw(im)
 svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc">',
-       '<title id="title">Pocket-TTS Korean CPU 추론 사양 비교</title>',
+       '<title id="title">Pocket-TTS Korean · Apple M6 CPU 실험 결과</title>',
        '<desc id="desc">100M과 300M의 모델 사양 및 Apple M6 CPU 4스레드 실측. 메모리와 합성 시간은 별도 실행에서 측정했습니다.</desc>']
 fonts = {}
 
@@ -61,9 +61,9 @@ def rule(y):
 
 rect(0, 0, W, H, BG)
 rect(72, 58, 7, 29, BLUE, 3)
-text(96, 84, "DEVELOPER REFERENCE  /  CPU INFERENCE", 26, BLUE, True)
+text(96, 84, "LOCAL EXPERIMENT  /  APPLE M6 CPU", 26, BLUE, True)
 text(72, 166, "Pocket-TTS Korean", 70, INK, True)
-text(72, 222, "100M · 300M 추론 사양과 로컬 실측 비교", 37, MUTED)
+text(72, 222, "Apple M6 CPU 실험 결과 · 100M / 300M", 37, MUTED)
 rect(72, 264, 1456, 94, "#E7EEF9", 18)
 text(100, 304, "측정 환경", 27, BLUE, True)
 text(270, 304, "Apple M6  /  RAM 32GB  /  macOS 27.0.1", 29, INK, True)
@@ -94,7 +94,7 @@ def row(y, label, a, b, height=72, emphasis=False, index=0):
     rule(y + height)
 
 
-section(504, "01   모델 사양  /  공개 모델 카드 및 설치 파일")
+section(504, "01   실험에 사용한 모델  /  모델 카드 및 설치 파일")
 models = SPECS["models"]
 rows = [
     ("전체 파라미터 · Mimi 코덱 포함", f'{models["pocket100"]["parameters"] / 1e6:.2f}M', f'{models["pocket300"]["parameters"] / 1e6:.2f}M'),
@@ -131,11 +131,10 @@ text(102, 1648, "공통 참조 음성: Supertonic F1 합성음 8.77초  /  다�
 
 text(72, 1762, "수치를 읽는 방법", 31, INK, True)
 notes = [
-    "최대 RSS: 별도 실행에서 로딩·합성 중 측정한 프로세스 메모리. 공식 최소 RAM이 아닙니다.",
+    "최대 RSS: 모델별 별도 실행에서 로딩·합성 중 측정한 프로세스 메모리입니다.",
     "초기 준비: 런타임 import + 모델 로딩 + 참조 음성 처리. 합성 시간은 준비 시간을 제외합니다.",
     "RTF = 전체 합성 시간 ÷ 전체 출력 음성 길이. 1 미만이면 재생 시간보다 빠릅니다.",
-    "현재 UI는 전체 WAV 완성 후 재생합니다. 이 수치는 첫 청크 지연(TTFA)이 아닙니다.",
-    "Intel 장비 성능은 미측정입니다. Windows 설치 경로는 WSL2 Ubuntu입니다.",
+    "합성 시간은 음성 전체 생성 완료까지 측정했습니다. UI에서 완성된 WAV를 재생합니다.",
 ]
 for i, value in enumerate(notes):
     rect(74, 1799 + i * 43, 6, 6, MUTED, 3)

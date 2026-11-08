@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2320" viewBox="0 0 1600 2320" role="img" aria-labelledby="title desc">
-<title id="title">Pocket-TTS Korean CPU 추론 사양 비교</title>
+<title id="title">Pocket-TTS Korean · Apple M6 CPU 실험 결과</title>
 <desc id="desc">100M과 300M의 모델 사양 및 Apple M6 CPU 4스레드 실측. 메모리와 합성 시간은 별도 실행에서 측정했습니다.</desc>
 <rect x="0" y="0" width="1600" height="2320" rx="0" fill="#F3F6FB"/>
 <rect x="72" y="58" width="7" height="29" rx="3" fill="#175CD3"/>
-<text x="96" y="84" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="26" font-weight="700" fill="#175CD3">DEVELOPER REFERENCE  /  CPU INFERENCE</text>
+<text x="96" y="84" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="26" font-weight="700" fill="#175CD3">LOCAL EXPERIMENT  /  APPLE M6 CPU</text>
 <text x="72" y="166" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="70" font-weight="700" fill="#14213D">Pocket-TTS Korean</text>
-<text x="72" y="222" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="37" font-weight="400" fill="#53627C">100M · 300M 추론 사양과 로컬 실측 비교</text>
+<text x="72" y="222" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="37" font-weight="400" fill="#53627C">Apple M6 CPU 실험 결과 · 100M / 300M</text>
 <rect x="72" y="264" width="1456" height="94" rx="18" fill="#E7EEF9"/>
 <text x="100" y="304" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="700" fill="#175CD3">측정 환경</text>
 <text x="270" y="304" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="29" font-weight="700" fill="#14213D">Apple M6  /  RAM 32GB  /  macOS 27.0.1</text>
@@ -19,7 +19,7 @@
 <text x="862" y="487" text-anchor="middle" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#BFD5FF">6-layer student</text>
 <text x="1306" y="487" text-anchor="middle" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="24" font-weight="400" fill="#DDCBFF">24-layer teacher</text>
 <rect x="72" y="504" width="1456" height="56" rx="0" fill="#E9EEF6"/>
-<text x="102" y="542" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="700" fill="#53627C">01   모델 사양  /  공개 모델 카드 및 설치 파일</text>
+<text x="102" y="542" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="700" fill="#53627C">01   실험에 사용한 모델  /  모델 카드 및 설치 파일</text>
 <rect x="73" y="560" width="1454" height="72" rx="0" fill="#FFFFFF"/>
 <text x="102" y="607.0" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="29" font-weight="400" fill="#14213D">전체 파라미터 · Mimi 코덱 포함</text>
 <text x="862" y="608.0" text-anchor="middle" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="35" font-weight="700" fill="#14213D">109.50M</text>
@@ -84,15 +84,13 @@
 <text x="102" y="1648" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="28" font-weight="400" fill="#53627C">공통 참조 음성: Supertonic F1 합성음 8.77초  /  다운로드 후 오프라인 실행</text>
 <text x="72" y="1762" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="31" font-weight="700" fill="#14213D">수치를 읽는 방법</text>
 <rect x="74" y="1799" width="6" height="6" rx="3" fill="#53627C"/>
-<text x="94" y="1817" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="400" fill="#53627C">최대 RSS: 별도 실행에서 로딩·합성 중 측정한 프로세스 메모리. 공식 최소 RAM이 아닙니다.</text>
+<text x="94" y="1817" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="400" fill="#53627C">최대 RSS: 모델별 별도 실행에서 로딩·합성 중 측정한 프로세스 메모리입니다.</text>
 <rect x="74" y="1842" width="6" height="6" rx="3" fill="#53627C"/>
 <text x="94" y="1860" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="400" fill="#53627C">초기 준비: 런타임 import + 모델 로딩 + 참조 음성 처리. 합성 시간은 준비 시간을 제외합니다.</text>
 <rect x="74" y="1885" width="6" height="6" rx="3" fill="#53627C"/>
 <text x="94" y="1903" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="400" fill="#53627C">RTF = 전체 합성 시간 ÷ 전체 출력 음성 길이. 1 미만이면 재생 시간보다 빠릅니다.</text>
 <rect x="74" y="1928" width="6" height="6" rx="3" fill="#53627C"/>
-<text x="94" y="1946" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="400" fill="#53627C">현재 UI는 전체 WAV 완성 후 재생합니다. 이 수치는 첫 청크 지연(TTFA)이 아닙니다.</text>
-<rect x="74" y="1971" width="6" height="6" rx="3" fill="#53627C"/>
-<text x="94" y="1989" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="400" fill="#53627C">Intel 장비 성능은 미측정입니다. Windows 설치 경로는 WSL2 Ubuntu입니다.</text>
+<text x="94" y="1946" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="400" fill="#53627C">합성 시간은 음성 전체 생성 완료까지 측정했습니다. UI에서 완성된 WAV를 재생합니다.</text>
 <path d="M72 2030H1528" stroke="#DCE3EE"/>
 <text x="72" y="2076" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="27" font-weight="700" fill="#14213D">seastar105 한국어 커뮤니티 모델 · Kyutai Pocket-TTS 기반</text>
 <text x="72" y="2115" text-anchor="start" font-family="Apple SD Gothic Neo, Noto Sans KR, Malgun Gothic, sans-serif" font-size="26" font-weight="400" fill="#53627C">가중치 CC BY 4.0  /  런타임 코드 MIT  ·  가중치·RSS 용량은 십진 단위</text>
